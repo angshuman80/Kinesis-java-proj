@@ -1,0 +1,6 @@
+com\example\kinesis\model\EventRecordTest.class
+com\example\kinesis\processor\RecordProcessorFactoryTest.class
+com\example\kinesis\service\DynamoDbServiceTest.class
+com\example\kinesis\KinesisDynamoDbApplicationTest.class
+com\example\kinesis\config\AwsConfigTest.class
+com\example\kinesis\processor\RecordProcessorTest.class

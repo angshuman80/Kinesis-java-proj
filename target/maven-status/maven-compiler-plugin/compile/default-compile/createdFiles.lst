@@ -1,0 +1,7 @@
+com\example\kinesis\config\AwsConfig.class
+com\example\kinesis\processor\RecordProcessor.class
+com\example\kinesis\KinesisDynamoDbApplication.class
+com\example\kinesis\model\EventRecord$EventRecordBuilder.class
+com\example\kinesis\processor\RecordProcessorFactory.class
+com\example\kinesis\model\EventRecord.class
+com\example\kinesis\service\DynamoDbService.class

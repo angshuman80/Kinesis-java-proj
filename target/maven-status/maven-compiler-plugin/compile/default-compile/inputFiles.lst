@@ -1,0 +1,6 @@
+C:\Angshuman\Workspace\Kinesis-java-proj\src\main\java\com\example\kinesis\processor\RecordProcessor.java
+C:\Angshuman\Workspace\Kinesis-java-proj\src\main\java\com\example\kinesis\config\AwsConfig.java
+C:\Angshuman\Workspace\Kinesis-java-proj\src\main\java\com\example\kinesis\KinesisDynamoDbApplication.java
+C:\Angshuman\Workspace\Kinesis-java-proj\src\main\java\com\example\kinesis\service\DynamoDbService.java
+C:\Angshuman\Workspace\Kinesis-java-proj\src\main\java\com\example\kinesis\processor\RecordProcessorFactory.java
+C:\Angshuman\Workspace\Kinesis-java-proj\src\main\java\com\example\kinesis\model\EventRecord.java
