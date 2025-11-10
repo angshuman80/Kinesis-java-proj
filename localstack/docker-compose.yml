@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  localstack:
+    container_name: localstack-kinesis-dynamodb
+    image: localstack/localstack:latest
+    ports:
+      - "4566:4566"            # LocalStack Gateway
+      - "4510-4559:4510-4559"  # External services port range
+    environment:
+      - SERVICES=kinesis,dynamodb,cloudwatch
+      - DEBUG=1
+      - DATA_DIR=/tmp/localstack/data
+      - DOCKER_HOST=unix:///var/run/docker.sock
+      - KINESIS_ERROR_PROBABILITY=0.0
+      - KINESIS_LATENCY=0
+    volumes:
+      - "./init-aws.sh:/etc/localstack/init/ready.d/init-aws.sh"
+      - "localstack-data:/tmp/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    networks:
+      - localstack-network
+
+volumes:
+  localstack-data:
+
+networks:
+  localstack-network:
+    driver: bridge
