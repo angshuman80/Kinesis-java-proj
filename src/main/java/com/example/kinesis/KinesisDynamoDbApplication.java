@@ -43,6 +43,7 @@ public class KinesisDynamoDbApplication implements CommandLineRunner {
         log.info("Starting Kinesis Consumer Application");
         log.info("Stream Name: {}", streamName);
         log.info("Application Name: {}", applicationName);
+        log.debug("Starting new Kinesis consumer");
 
         ConfigsBuilder configsBuilder = new ConfigsBuilder(
                 streamName,
