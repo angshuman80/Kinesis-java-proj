@@ -39,10 +39,10 @@ jobs:
           path: target/surefire-reports/
 
       # Step 5: Install Windsurf CLI
-      - name: Install Windsurf CLI (binary)
+      - name: Install Windsurf CLI
         run: |
-         curl -sSL https://get.windsurf.ai/install.sh | bash
-         echo "$HOME/.windsurf/bin" >> $GITHUB_PATH
+         pip install windsurf-ai
+         windsurf --version
 
       # Step 6: Run Windsurf AI Review
       - name: Run Windsurf AI Review
