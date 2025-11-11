@@ -40,7 +40,9 @@ jobs:
 
       # Step 5: Install Windsurf CLI
       - name: Install Windsurf CLI
-        run: npm install -g windsurf
+        run: |
+         pip install windsurf-ai
+         windsurf --version
 
       # Step 6: Run Windsurf AI Review
       - name: Run Windsurf AI Review

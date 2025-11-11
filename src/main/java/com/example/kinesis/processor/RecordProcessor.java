@@ -30,6 +30,8 @@ public class RecordProcessor implements ShardRecordProcessor {
         log.debug("Processing {} records from shard: {}", 
                 processRecordsInput.records().size(), shardId);
 
+        log.info("test");
+
         for (KinesisClientRecord record : processRecordsInput.records()) {
             try {
                 processRecord(record);
