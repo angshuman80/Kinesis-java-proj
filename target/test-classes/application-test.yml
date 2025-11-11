@@ -1,0 +1,18 @@
+aws:
+  region: us-east-1
+  kinesis:
+    stream-name: test-stream
+    application-name: test-app
+  dynamodb:
+    table-name: test-table
+
+spring:
+  application:
+    name: kinesis-dynamodb-consumer-test
+  main:
+    lazy-initialization: true
+
+logging:
+  level:
+    root: WARN
+    com.example.kinesis: DEBUG

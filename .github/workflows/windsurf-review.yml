@@ -1,0 +1,68 @@
+name: Windsurf AI + Java Build Review
+
+on:
+  pull_request:
+    branches: [ main, develop ]
+  push:
+    branches: [ feature/**, hotfix/** ]
+
+jobs:
+  build-and-review:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      # Step 1: Checkout repo
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Step 2: Setup JDK
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      # Step 3: Build and test (choose Maven or Gradle)
+      - name: Build with Maven
+        run: mvn -B clean verify
+        # OR, if Gradle:
+        # run: ./gradlew build test
+
+      # Step 4: Upload test results
+      - name: Archive JUnit Test Results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: junit-results
+          path: target/surefire-reports/
+
+      # Step 5: Install Windsurf CLI
+      - name: Install Windsurf CLI
+        run: npm install -g windsurf
+
+      # Step 6: Run Windsurf AI Review
+      - name: Run Windsurf AI Review
+        env:
+          WINDSURF_API_KEY: ${{ secrets.WINDSURF_API_KEY }}
+        run: |
+          echo "Running Windsurf AI Review..."
+          windsurf review --path . --output windsurf-report.json --format github
+
+      # Step 7: Post combined report to PR
+      - name: Post review summary to PR
+        if: github.event_name == 'pull_request'
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          header: windsrf-java-review
+          path: windsurf-report.json
+
+      # 🚦 Optional Step 8: Fail if review score too low
+      - name: Enforce quality threshold
+        run: |
+          SCORE=$(jq '.score' windsurf-report.json)
+          if (( $(echo "$SCORE < 0.7" | bc -l) )); then
+            echo "❌ Windsurf review score below threshold ($SCORE)"
+            exit 1
+          fi
